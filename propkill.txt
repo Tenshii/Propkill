@@ -3,5 +3,6 @@
 	"base"		"base"
 	"title"		"PropKill"
 	"version"	"0.1"
+	"menusystem" "1"
 	"maps"		"*"
 }
