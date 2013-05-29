@@ -1,4 +1,4 @@
-"PropKill"
+"propkill"
 {
 	"base"		"base"
 	"title"		"PropKill"
