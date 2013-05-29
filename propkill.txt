@@ -1,6 +1,7 @@
-"propkill"
+"PropKill"
 {
-	"name"		"propkill
-        "title"	        "Propkill"
-
+	"base"		"base"
+	"title"		"PropKill"
+	"version"	"0.1"
+	"maps"		"*"
 }
