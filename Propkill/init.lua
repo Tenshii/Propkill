@@ -76,3 +76,5 @@ local function ChangeTeamInChat(pl,text,public)
 		pl:SetTeam(3)
 	end
 end
+
+hook.Add("PlayerSay", "TeamChatCommands",ChangeTeamInChat )
