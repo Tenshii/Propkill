@@ -53,4 +53,15 @@ function GM:PlayerDeathThink( pl )
    pl:Spawn()
 end
 
+// changing team concommands
+
+concommand.Add("team_red", function(pl)
+	pl:SetTeam(1)
+end)
+concommand.Add("team_blue", function(pl)
+	pl:SetTeam(2)
+end)
+concommand.Add("team_spec", function(pl)
+	pl:SetTeam(3)
+end)
    
