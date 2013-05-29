@@ -74,3 +74,5 @@ local function ChangeTeamInChat(pl,text,public)
 		pl:SetTeam(2)
 	elseif string.StartWith(text,"!spec") then
 		pl:SetTeam(3)
+	end
+end
