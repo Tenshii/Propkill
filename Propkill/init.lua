@@ -65,3 +65,12 @@ concommand.Add("team_spec", function(pl)
 	pl:SetTeam(3)
 end)
    
+// changing team chat commands
+
+local function ChangeTeamInChat(pl,text,public)
+	if string.StartWith(text,"!red") then
+		pl:SetTeam(1)
+	elseif string.StartWith(text,"!blue") then
+		pl:SetTeam(2)
+	elseif string.StartWith(text,"!spec") then
+		pl:SetTeam(3)
