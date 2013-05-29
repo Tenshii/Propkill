@@ -16,7 +16,7 @@ function GM:PlayerInitialSpawn( pl )
 	net.Start( "PlayerWelcomeMessage" )
 	net.Send( pl )
 	net.Start( "ServerJoinMessage" )
-	net.String( pl:Nick() )
+	net.WriteEntity( pl )
 	net.Broadcast()
 	
 end
