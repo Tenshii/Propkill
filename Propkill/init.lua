@@ -1,80 +1,122 @@
 /*---------------------------------------------------------
    Author: .Tenshi (STEAM_0:1:47827646) and Goose (STEAM_0:0:10650470)
 ---------------------------------------------------------*/
+
 AddCSLuaFile( "cl_init.lua" )
+AddCSLuaFile( "cl_hud.lua" )
 AddCSLuaFile( "shared.lua" )
 include( 'shared.lua' )
+include( 'cl_hud.lua')
 
-// Setting the Loadouts and welcome messages:
--- Starting in spectator
-
-util.AddNetworkString( "PlayerWelcomeMessage" )
-util.AddNetworkString( "ServerJoinMessage" )
+// On Join
 
 function GM:PlayerInitialSpawn( pl )
+
+	pl:ConCommand("team_menu")
 	pl:SetTeam( 3 )
-	net.Start( "PlayerWelcomeMessage" )
-	net.Send( pl )
-	net.Start( "ServerJoinMessage" )
-	net.WriteEntity( pl )
-	net.Broadcast()
-	
 end
 
-// Weapons which teams spawn with:
--- 1&2 only get physguns and 3 gets nothing
-
-function GM:PlayerLoadOut( pl )
-   if pl:Team() == 1 then
-      pl:Give("weapon_physgun")
-      pl:Model("models/breen.mdl")
-      pl:SetColor(255,0,0,255)
-   elseif pl:Team() == 2 then
-      pl:Give("weapon_physgun")
-      pl:Model("models/gman.mdl")
-      pl:SetColor(0,0,255,255)
-   elseif pl:Team() == 3 then
-   	return nil
-   end
-end
-
-// What happens on spawn:
--- Spawns team 3 as spectator
+// Team stuff
 
 function GM:PlayerSpawn( pl )
-   if pl:Team() == 3 then
-      GAMEMODE:PlayerSpawnAsSpectator( pl )
-   end
-end
-
-// Instantly respawns player on death
-
-function GM:PlayerDeathThink( pl )
-   pl:Spawn()
-end
-
-// changing team concommands
-
-concommand.Add("team_red", function(pl)
-	pl:SetTeam(1)
-end)
-concommand.Add("team_blue", function(pl)
-	pl:SetTeam(2)
-end)
-concommand.Add("team_spec", function(pl)
-	pl:SetTeam(3)
-end)
-   
-// changing team chat commands
-
-local function ChangeTeamInChat(pl,text,public)
-	if string.StartWith(text,"!red") then
-		pl:SetTeam(1)
-	elseif string.StartWith(text,"!blue") then
-		pl:SetTeam(2)
-	elseif string.StartWith(text,"!spec") then
-		pl:SetTeam(3)
+	if pl:Team() == 1 then
+		pl:SetModel( "models/player/t_leet.mdl" )
+		pl:Give("weapon_physgun")
+		pl:UnSpectate()
+	elseif pl:Team() == 2 then		
+		pl:SetModel( "models/player/ct_gsg9.mdl" )
+		pl:Give("weapon_physgun")
+		pl:UnSpectate()
+	elseif pl:Team() == 3 then
+	  	pl:StripWeapons()
+     	pl:Spectate(6)
 	end
 end
 
-hook.Add("PlayerSay", "TeamChatCommands",ChangeTeamInChat )
+
+// choosing teams
+
+function blues( pl )
+	if pl:Team() == 1 then
+			net.Start("BlueDisallow")
+			net.Send(pl)
+		else
+			pl:SetTeam( 1 )
+			pl:Spawn()
+			net.Start("JoinBlue")
+			net.WriteEntity(pl)
+			net.Broadcast()
+		end
+end
+
+function reds( pl )
+	if pl:Team() == 2 then
+			net.Start("RedDisallow")
+			net.Send(pl)
+		else
+			pl:SetTeam( 2 )
+			pl:Spawn()
+			net.Start("JoinRed")
+			net.WriteEntity(pl)
+			net.Broadcast()
+		end
+end
+
+function spec( pl )
+	if pl:Team() == 3 then
+			net.Start("SpecDisallow")
+			net.Send(pl)
+		else
+			pl:SetTeam( 3 )
+			pl:Spawn()
+			net.Start("JoinSpec")
+			net.WriteEntity(pl)
+			net.Broadcast()
+		end
+end
+
+// console commands
+
+concommand.Add( "team_blue", blues )
+concommand.Add( "team_red", reds )
+concommand.Add( "team_spec", spec )
+
+
+
+// teammenu
+
+function teamchooser( ply ) 
+    umsg.Start( "teamchooser", ply ) 
+    umsg.End()
+end 
+hook.Add("ShowSpare1", "MyHook", teamchooser)
+
+// chat commands
+
+util.AddNetworkString("JoinSpec")
+util.AddNetworkString("JoinBlue")
+util.AddNetworkString("JoinRed")
+util.AddNetworkString("SpecDisallow")
+util.AddNetworkString("BlueDisallow")
+util.AddNetworkString("RedDisallow")
+
+function changeteam( pl, text, public)
+	if string.StartWith(text, "!spec") then
+		pl:ConCommand("team_spec")
+		return ""
+	end
+	if string.StartWith(text, "!blue") then
+		pl:ConCommand("team_blue")
+		return ""
+	end
+	if string.StartWith(text, "!red") then
+		pl:ConCommand("team_red")
+		return ""
+	end
+end
+
+hook.Add("PlayerSay", "changeteam", changeteam)
+
+function GM:PlayerDeathThink(pl)
+	pl:Spawn()
+end
