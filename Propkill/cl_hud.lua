@@ -6,9 +6,14 @@ function hidehud(name)
 end
 hook.Add("HUDShouldDraw", "HideOurHud", hidehud)
 
+
 function DrawNewHUD()
-	// None of the winning and killstreak actually works atm
-	
+
+	local trace = LocalPlayer():GetEyeTrace()
+			if trace.Entity:GetClass() == "prop_physics" then
+				draw.SimpleText("Looking at a prop","TargetID", ScrW()*0.5, ScrH()*0.5, WHITECOLOUR, 0, 1)
+			end
+
 	local winning = GetGlobalEntity( "Leader" )
 	local leading = "No one"
 	if winning and winning ~= NULL and winning ~= nil then
@@ -32,10 +37,10 @@ function DrawNewHUD()
 	draw.SimpleText( "Leader: "  .. leading, "TargetID", ScrW()*0.025, ScrH()*0.93, WHITECOLOUR, 0, 1)
 	draw.RoundedBox(4, ScrW()*0.029, ScrH()*0.838, 250, 20, Color(32, 32, 32, 255))
 	draw.RoundedBox(4, ScrW()*0.029, ScrH()*0.838, math.Clamp( LocalPlayer():Health(), 0, 100 )*2.5, 20, Color(129, 183, 1, 255))
-	draw.SimpleText("Health: "..LocalPlayer():Health(), "UiBold", ScrW()*0.1, ScrH()*0.85, WHITECOLOUR, 0, 1)
+	draw.SimpleText("Health: "..LocalPlayer():Health(), "TargetID", ScrW()*0.1, ScrH()*0.85, WHITECOLOUR, 0, 1)
 	draw.RoundedBox(4, ScrW()*0.029, ScrH()*0.879, 250, 20, Color(32, 32, 32, 255))
 	draw.RoundedBox(4, ScrW()*0.029, ScrH()*0.879, math.Clamp( KDR, 0, 4 )*62.5, 20, Color(193, 106, 6, 255))
-	draw.SimpleText("Kill/Death Ratio: "..KDR..":1", "UiBold", ScrW()*0.09, ScrH()*0.891, WHITECOLOUR, 0, 1)
+	draw.SimpleText("Kill/Death Ratio: "..KDR..":1", "TargetID", ScrW()*0.09, ScrH()*0.891, WHITECOLOUR, 0, 1)
 end
 
 hook.Add("HUDPaint", "NewHUD",DrawNewHUD )
