@@ -120,3 +120,17 @@ hook.Add("PlayerSay", "changeteam", changeteam)
 function GM:PlayerDeathThink(pl)
 	pl:Spawn()
 end
+
+
+function GM:PlayerSpawnProp()
+	return true
+end
+
+local PropSpawned = 0
+
+function GM:PlayerSpawnedProp(pl)
+	PropSpawned = PropSpawned + 1
+	if PropSpawned > 5 then
+		return false
+	end
+end
