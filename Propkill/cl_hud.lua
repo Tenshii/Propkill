@@ -1,12 +1,14 @@
-
+ 
 function hidehud(name)
 	for k, v in pairs({"CHudHealth", "CHudBattery", "CHudAmmo", "CHudSecondaryAmmo"}) do
 		if name == v then return false end
 	end
 end
-hook.Add("HUDShouldDraw", "HideOurHud:D", hidehud)
+hook.Add("HUDShouldDraw", "HideOurHud", hidehud)
 
 function DrawNewHUD()
+	// None of the winning and killstreak actually works atm
+	
 	local winning = GetGlobalEntity( "Leader" )
 	local leading = "No one"
 	if winning and winning ~= NULL and winning ~= nil then
@@ -19,9 +21,21 @@ function DrawNewHUD()
 		end
 	end
 
-	draw.SimpleText( "Killstreak: "  .. LocalPlayer():GetNWInt( "killstreak" ), "UiBold", 48, ScrH() - 47, WHITECOLOUR, 0, 1)
-	draw.SimpleText( "Leader: "  .. leading, "UiBold", , ScrH() - 35, WHITECOLOUR, 0, 1)
+	local pkKills = LocalPlayer():Frags() 
+	local pkDeaths = LocalPlayer():Deaths()
+	if pkKills == 0 then pkKills = 1 end
+	if pkDeaths == 0 then pkDeaths = 1 end
+	local KDR = math.Round( pkKills / pkDeaths, 1)
+
 	draw.RoundedBox( 16, ScrW()*0.01, ScrH()*0.82, 300, 125, Color( 52, 54, 61, 255 ) )
+	draw.SimpleText( "Killstreak: "  .. LocalPlayer():GetNWInt( "killstreak" ), "TargetID", ScrW()*0.025, ScrH()*0.96, WHITECOLOUR, 0, 1)
+	draw.SimpleText( "Leader: "  .. leading, "TargetID", ScrW()*0.025, ScrH()*0.93, WHITECOLOUR, 0, 1)
+	draw.RoundedBox(4, ScrW()*0.029, ScrH()*0.838, 250, 20, Color(32, 32, 32, 255))
+	draw.RoundedBox(4, ScrW()*0.029, ScrH()*0.838, math.Clamp( LocalPlayer():Health(), 0, 100 )*2.5, 20, Color(129, 183, 1, 255))
+	draw.SimpleText("Health: "..LocalPlayer():Health(), "UiBold", ScrW()*0.1, ScrH()*0.85, WHITECOLOUR, 0, 1)
+	draw.RoundedBox(4, ScrW()*0.029, ScrH()*0.879, 250, 20, Color(32, 32, 32, 255))
+	draw.RoundedBox(4, ScrW()*0.029, ScrH()*0.879, math.Clamp( KDR, 0, 4 )*62.5, 20, Color(193, 106, 6, 255))
+	draw.SimpleText("Kill/Death Ratio: "..KDR..":1", "UiBold", ScrW()*0.09, ScrH()*0.891, WHITECOLOUR, 0, 1)
 end
 
 hook.Add("HUDPaint", "NewHUD",DrawNewHUD )
