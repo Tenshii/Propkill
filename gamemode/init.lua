@@ -132,18 +132,6 @@ function GM:PlayerSpawnProp()
 	return true
 end
 
-util.AddNetworkString("proplimitreached")
-
-
-CreateConVar("proplimit",5,true,false)
-/*
-function GM:PlayerSpawnedProp(pl)
-	if pl:GetNWInt() > GetConvar("proplimit"):GetInt() then
-		net.Start("proplimitreached")
-		net.Send(pl)
-	end
-end
-*/
 util.AddNetworkString("connectmessage")
 
 hook.Add("PlayerConnect", "connect message",function(pl) 
@@ -151,3 +139,7 @@ hook.Add("PlayerConnect", "connect message",function(pl)
 	net.WriteEntity(pl)
 	net.Broadcast()
 end)
+
+function GM:GetFallDamage( ply, speed )
+	return 0 
+end
