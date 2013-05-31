@@ -2,6 +2,12 @@
    Author: .Tenshi (STEAM_0:1:47827646) and Goose (STEAM_0:0:10650470)
 ---------------------------------------------------------*/
 
+Msg( [[/==================================================/
+PropKill - loaded Successfully
+Coded .Tenshi (STEAM_0:1:47827646) and Goose (STEAM_0:0:10650470)
+/==================================================/
+]] )
+
 AddCSLuaFile( "cl_init.lua" )
 AddCSLuaFile( "cl_hud.lua" )
 AddCSLuaFile( "shared.lua" )
