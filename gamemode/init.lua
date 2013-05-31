@@ -5,8 +5,10 @@
 AddCSLuaFile( "cl_init.lua" )
 AddCSLuaFile( "cl_hud.lua" )
 AddCSLuaFile( "shared.lua" )
+AddCSLuaFile( "cl_netmessages.lua" )
 include( 'shared.lua' )
 include( 'cl_hud.lua')
+include( 'cl_netmessages.lua' )
 
 
 // On Join
