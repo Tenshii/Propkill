@@ -130,9 +130,20 @@ end
 
 local PropSpawned = 0
 
+util.AddNetworkString("proplimitreached")
 function GM:PlayerSpawnedProp(pl)
 	PropSpawned = PropSpawned + 1
 	if PropSpawned > 5 then
 		return false
+		net.Start("proplimitreached")
+		net.Send(pl)
 	end
 end
+
+util.AddNetworkString("connectmessage")
+
+hook.Add("PlayerConnect", "connect message",function(pl) 
+	net.Start("connectmessage")
+	net.WriteEntity(pl)
+	net.Broadcast()
+end)
