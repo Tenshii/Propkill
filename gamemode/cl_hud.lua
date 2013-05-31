@@ -6,6 +6,10 @@ function hidehud(name)
 end
 hook.Add("HUDShouldDraw", "HideOurHud", hidehud)
 
+function GetPropOwner()
+	propowner = net.ReadEntity()
+end
+net.Receive("propowner", GetPropOwner)
 
 function DrawNewHUD()
 	local trace = LocalPlayer():GetEyeTrace()
