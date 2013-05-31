@@ -1,11 +1,36 @@
-  function SpawnProtection(pl)
+PK = {}
+
+function PK.SetUpTables(pl)
+	pl.Vars = {}
+	pl.Vars.KillStreak = 0
+end
+
+hook.Add("PlayerInitialSpawn","SetUpTables",PK.SetUpTables)
+
+function PK.SendInfo(pl)
+	net.Start("SendInfo")
+	net.WriteTable(pl.Vars)
+	net.Send(pl)
+end
+
+function PK.KillStreak(pl,item,attacker)
+	pl.Vars.KillStreak = 0
+	attacker.Vars.KillStreak = attacker.Vars.KillStreak + 1
+	
+	PK.SendInfo(pl)
+	PK.SendInfo(attacker)
+end
+
+hook.Add("PlayerDeath","Killstreak",PK.KillStreak)
+
+function PK.SpawnProtection(pl)
     timer.Simple(2, function()
   	pl:GodDisable()
   	net.Start("goddisable")
   	net.Send(pl)
 end)
 
-hook.Add("PlayerSpawn","SpawnProtection",SpawnProtection)
+hook.Add("PlayerSpawn","SpawnProtection",PK.SpawnProtection)
 
 // choosing teams
 
