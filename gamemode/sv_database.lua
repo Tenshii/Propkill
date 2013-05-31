@@ -31,6 +31,7 @@ function PK.SpawnProtection(pl)
   	net.Start("goddisable")
   	net.Send(pl)
 end)
+end
 
 hook.Add("PlayerSpawn","SpawnProtection",PK.SpawnProtection)
 
