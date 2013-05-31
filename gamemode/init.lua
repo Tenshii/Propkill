@@ -24,10 +24,12 @@ function GM:PlayerGiveSWEP( ply, class, wep )
 end
 
 // setting the owner of the prop
-
+util.AddNetworkedString("propowner")
 function GM:PlayerSpawnedProp( pl, model, ent)
 	ent:SetPhysicsAttacker( pl )
-	SetGlobalEntity("propowner",pl)
+	net.Start("propowner")
+	net.WriteEntity(pl)
+	net.Broadcast()
 end
 
 // Team stuff
@@ -39,22 +41,26 @@ function GM:PlayerSpawn( pl )
 		pl:Give("weapon_physgun")
 		pl:UnSpectate()
 		pl:GodEnable()
+		pl:SetColor(255,0,0,255)
 	elseif pl:Team() == 2 then		
 		pl:SetModel( "models/player/odessa.mdl" )
 		pl:Give("weapon_physgun")
 		pl:UnSpectate()
 		pl:GodEnable()
+		pl:SetColor(255,0,0,255)
 	elseif pl:Team() == 4 then		
 		pl:SetModel( "models/player/breen.mdl" )
 		pl:Give("weapon_physgun")
 		pl:UnSpectate()
 		pl:GodEnable()
+		pl:SetColor(255,0,0,255)
 	elseif pl:Team() == 3 then
 	  	pl:StripWeapons()
      		pl:Spectate(6)
 	end
 	timer.Simple(2, function()
 	pl:GodDisable()
+	pl:SetColor(255,255,255,255)
 	net.Start("goddisable")
 	net.Send(pl)
 end)
@@ -185,8 +191,10 @@ function GM:GetFallDamage( ply, speed )
 end
 
 function GM:PhysgunPickup( pl, ent )
-        if not pl == ent:GetPhysicsAttacker() then
-                return false
+        if pl == ent:GetPhysicsAttacker() then
+                return true
+        else
+        	return false
         end
 end
 
