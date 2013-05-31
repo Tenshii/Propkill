@@ -28,7 +28,7 @@ end
 	local KDR = math.Round( pkKills / pkDeaths, 1)
 
 	draw.RoundedBox( 16, ScrW()*0.01, ScrH()*0.82, 300, 125, Color( 52, 54, 61, 255 ) )
-	draw.SimpleText( "Killstreak: "  .. LocalPlayer().Vars.KillStreak), "TargetID", ScrW()*0.025, ScrH()*0.96, WHITECOLOUR, 0, 1)
+	draw.SimpleText( "Killstreak: "  .. LocalPlayer().Vars.KillStreak, "TargetID", ScrW()*0.025, ScrH()*0.96, WHITECOLOUR, 0, 1)
 	draw.SimpleText( "Leader: "  .. leading, "TargetID", ScrW()*0.025, ScrH()*0.93, WHITECOLOUR, 0, 1)
 	draw.RoundedBox(4, ScrW()*0.029, ScrH()*0.838, 250, 20, Color(32, 32, 32, 255))
 	draw.RoundedBox(4, ScrW()*0.029, ScrH()*0.838, math.Clamp( LocalPlayer():Health(), 0, 100 )*2.5, 20, Color(129, 183, 1, 255))
