@@ -44,6 +44,11 @@ function GM:PlayerSpawn( pl )
 		pl:Give("weapon_physgun")
 		pl:UnSpectate()
 		pl:GodEnable()
+	elseif pl:Team() == 4 then		
+		pl:SetModel( "models/player/breen.mdl" )
+		pl:Give("weapon_physgun")
+		pl:UnSpectate()
+		pl:GodEnable()
 	elseif pl:Team() == 3 then
 	  	pl:StripWeapons()
      		pl:Spectate(6)
@@ -66,6 +71,19 @@ function blues( pl )
 			pl:SetTeam( 1 )
 			pl:Spawn()
 			net.Start("JoinBlue")
+			net.WriteEntity(pl)
+			net.Broadcast()
+		end
+end
+
+function solos( pl )
+	if pl:Team() == 4 then
+			net.Start("SoloDisallow")
+			net.Send(pl)
+		else
+			pl:SetTeam( 4 )
+			pl:Spawn()
+			net.Start("JoinSolo")
 			net.WriteEntity(pl)
 			net.Broadcast()
 		end
@@ -102,6 +120,7 @@ end
 concommand.Add( "team_blue", blues )
 concommand.Add( "team_red", reds )
 concommand.Add( "team_spec", spec )
+concommand.Add( "team_solo", solos )
 
 
 // teammenu
@@ -117,9 +136,11 @@ hook.Add("ShowSpare1", "MyHook", teamchooser)
 util.AddNetworkString("JoinSpec")
 util.AddNetworkString("JoinBlue")
 util.AddNetworkString("JoinRed")
+util.AddNetworkString("JoinSolo")
 util.AddNetworkString("SpecDisallow")
 util.AddNetworkString("BlueDisallow")
 util.AddNetworkString("RedDisallow")
+util.AddNetworkString("SoloDisallow")
 
 function changeteam( pl, text, public)
 	if string.StartWith(text, "!spec") then
@@ -128,6 +149,10 @@ function changeteam( pl, text, public)
 	end
 	if string.StartWith(text, "!blue") then
 		pl:ConCommand("team_blue")
+		return ""
+	end
+	if string.StartWith(text, "!solo") then
+		pl:ConCommand("team_solo")
 		return ""
 	end
 	if string.StartWith(text, "!red") then

@@ -22,3 +22,4 @@ team.SetUp( 3, "Spectators", Color( 186, 186, 186 ) )
 
 util.PrecacheModel( "models/player/kleiner.mdl" )
 util.PrecacheModel( "models/player/odessa.mdl" )
+util.PrecacheModel( "models/player/breen.mdl" )

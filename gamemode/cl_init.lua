@@ -13,7 +13,7 @@ function teamchooser()
 
   local teamchooser = vgui.Create( "DFrame" ) -- Creates the frame itself
 	teamchooser:SetPos( 500,300 ) -- Position on the players screen
-	teamchooser:SetSize( 300, 150 ) -- Size of the frame
+	teamchooser:SetSize( 400, 150 ) -- Size of the frame
 	teamchooser:SetTitle( "Choose Your Team!" ) -- Title of the frame
 	teamchooser:SetVisible( true )
 	teamchooser:SetDraggable( true ) -- Draggable by mouse?
@@ -34,11 +34,22 @@ function teamchooser()
 		 local CTButton = vgui.Create( "DButton", teamchooser )
 		 CTButton:SetText( "Reds" )
 		 CTButton:SetPos( 160,55 )
-		 CTButton:SetSize( 100,75 )
+		 CTButton:SetSize( 100, 75 )
 		 function CTButton:OnMousePressed()
 		 	RunConsoleCommand("team_red")
 		 end 	
 		 function CTButton:OnMouseReleased()
+			teamchooser:SetVisible(false)
+		 end
+		 
+		 local RButton = vgui.Create( "DButton", teamchooser )
+		 RButton:SetText( "Solo" )
+		 RButton:SetPos( 285,55 )
+		 RButton:SetSize( 100, 75 )
+		 function RButton:OnMousePressed()
+		 	RunConsoleCommand("team_solo")
+		 end
+		 function RButton:OnMouseReleased()
 			teamchooser:SetVisible(false)
 		 end
 end
@@ -53,11 +64,17 @@ end)
 net.Receive("JoinBlue", function()
 	notification.AddLegacy( net.ReadEntity():Nick().." has joined the Blue team.", NOTIFY_UNDO, 2 )
 end)
+net.Receive("JoinSolo", function()
+	notification.AddLegacy( net.ReadEntity():Nick().." has joined the Solo team.", NOTIFY_UNDO, 2 )
+end)
 net.Receive("JoinSpec", function()
 	notification.AddLegacy( net.ReadEntity():Nick().." has moved to Spectate.", NOTIFY_UNDO, 2 )
 end)
 net.Receive("RedDisallow", function()
 	notification.AddLegacy( "You already are in the Red team.", NOTIFY_ERROR, 2 )
+end)
+net.Receive("SoloDisallow", function()
+	notification.AddLegacy( "You already are in the Solo team.", NOTIFY_ERROR, 2 )
 end)
 net.Receive("BlueDisallow", function()
 	notification.AddLegacy( "You already are in the Blue team.", NOTIFY_ERROR, 2 )
