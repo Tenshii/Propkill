@@ -26,7 +26,6 @@ end
 // setting the owner of the prop
 
 function GM:PlayerSpawnedProp( pl, model, ent)
-	ent:SetOwner(pl)
 	ent:SetPhysicsAttacker( pl )
 end
 
@@ -184,4 +183,10 @@ function GM:GetFallDamage( ply, speed )
 	return 0 
 end
 
-
+function GM:PhysgunPickup( pl, ent )
+        if pl == ent:GetPhysicsAttacker() then
+                return true
+        else
+        	return false
+        end
+end
