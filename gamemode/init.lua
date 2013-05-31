@@ -13,10 +13,14 @@ AddCSLuaFile( "cl_hud.lua" )
 AddCSLuaFile( "shared.lua" )
 AddCSLuaFile( "cl_netmessages.lua" )
 AddCSLuaFile( "cl_vgui.lua" )
+AddCSLuaFile( "sv_gmfunctions.lua" )
+AddCSLuaFile( "sv_commands.lua" )
 include( 'shared.lua' )
 include( 'cl_hud.lua')
 include( 'cl_netmessages.lua' )
 include( 'cl_vgui.lua' )
+include( 'sv_gmfunctions.lua' )
+include( 'sv_commands.lua' )
 
 
 
