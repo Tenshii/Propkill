@@ -31,20 +31,28 @@ function GM:PlayerSpawnedProp( pl, model, ent)
 end
 
 // Team stuff
+util.AddNetworkString("goddisable")
 
 function GM:PlayerSpawn( pl )
 	if pl:Team() == 1 then
 		pl:SetModel( "models/player/kleiner.mdl" )
 		pl:Give("weapon_physgun")
 		pl:UnSpectate()
+		pl:GodEnable()
 	elseif pl:Team() == 2 then		
 		pl:SetModel( "models/player/odessa.mdl" )
 		pl:Give("weapon_physgun")
 		pl:UnSpectate()
+		pl:GodEnable()
 	elseif pl:Team() == 3 then
 	  	pl:StripWeapons()
-     	pl:Spectate(6)
+     		pl:Spectate(6)
 	end
+	timer.Simple(5, function()
+	pl:GodDisable()
+	net.Start("goddisable")
+	net.Send(pl)
+end)
 end
 
 
