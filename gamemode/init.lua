@@ -24,12 +24,9 @@ function GM:PlayerGiveSWEP( ply, class, wep )
 end
 
 // setting the owner of the prop
-util.AddNetworkedString("propowner")
+
 function GM:PlayerSpawnedProp( pl, model, ent)
 	ent:SetPhysicsAttacker( pl )
-	net.Start("propowner")
-	net.WriteEntity(pl)
-	net.Broadcast()
 end
 
 // Team stuff
