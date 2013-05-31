@@ -15,12 +15,12 @@ function DrawNewHUD()
 			if winning == LocalPlayer() then
 				leading = "You are"
 			else
-					leading = winning:Nick() .. winning.Vars.Killstreak
+					leading = winning:Nick() .. winning.Vars.KillStreak
 			end
 		end
 end
-
-	LocalPlayer().Vars.Killstreak = LocalPlayer().Vars.Killstreak or 0
+	LocalPlayer().Vars = LocalPlayer().Vars or {}
+	LocalPlayer().Vars.KillStreak = 0 or LocalPlayer().Vars.KillStreak
 	local pkKills = LocalPlayer():Frags() 
 	local pkDeaths = LocalPlayer():Deaths()
 	if pkKills == 0 then pkKills = 1 end
