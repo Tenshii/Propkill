@@ -162,7 +162,7 @@ end
 // Prop protection
 
 function GM:PhysgunPickup( ply, ent )
-	if ply == ent.Owner then
+	if ply == ent:GetOwner() then
 		return true
 	else 
 		return false
