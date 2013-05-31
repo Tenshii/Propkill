@@ -4,7 +4,7 @@
 
 Msg( [[/==================================================/
 PropKill - loaded Successfully
-Coded .Tenshi (STEAM_0:1:47827646) and Goose (STEAM_0:0:10650470)
+Coded by .Tenshi (STEAM_0:1:47827646) and Goose (STEAM_0:0:10650470)
 /==================================================/
 ]] )
 
