@@ -4,6 +4,7 @@ concommand.Add( "team_blue", blues )
 concommand.Add( "team_red", reds )
 concommand.Add( "team_spec", spec )
 concommand.Add( "team_solo", solos )
+concommand.Add( "team_menu", teamchooser )
 
 
 
@@ -29,3 +30,4 @@ function changeteam( pl, text, public)
 end
 
 hook.Add("PlayerSay", "changeteam", changeteam)
+
