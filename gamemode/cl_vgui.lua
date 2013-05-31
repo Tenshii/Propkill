@@ -44,3 +44,5 @@ function teamchooser()
 			teamchooser:SetVisible(false)
 		 end
 end
+
+usermessage.Hook( "teamchooser", teamchooser )
