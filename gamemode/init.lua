@@ -27,6 +27,7 @@ end
 
 function GM:PlayerSpawnedProp( pl, model, ent)
 	ent:SetPhysicsAttacker( pl )
+	SetGlobalEntity("propowner",pl)
 end
 
 // Team stuff
@@ -184,9 +185,8 @@ function GM:GetFallDamage( ply, speed )
 end
 
 function GM:PhysgunPickup( pl, ent )
-        if pl == ent:GetPhysicsAttacker() then
-                return true
-        else
-        	return false
+        if not pl == ent:GetPhysicsAttacker() then
+                return false
         end
 end
+
