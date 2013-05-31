@@ -48,7 +48,7 @@ function GM:PlayerSpawn( pl )
 	  	pl:StripWeapons()
      		pl:Spectate(6)
 	end
-	timer.Simple(5, function()
+	timer.Simple(2, function()
 	pl:GodDisable()
 	net.Start("goddisable")
 	net.Send(pl)
