@@ -42,26 +42,22 @@ function GM:PlayerSpawn( pl )
 		pl:Give("weapon_physgun")
 		pl:UnSpectate()
 		pl:GodEnable()
-		pl:SetColor(255,0,0,255)
 	elseif pl:Team() == 2 then		
 		pl:SetModel( "models/player/odessa.mdl" )
 		pl:Give("weapon_physgun")
 		pl:UnSpectate()
 		pl:GodEnable()
-		pl:SetColor(255,0,0,255)
 	elseif pl:Team() == 4 then		
 		pl:SetModel( "models/player/breen.mdl" )
 		pl:Give("weapon_physgun")
 		pl:UnSpectate()
 		pl:GodEnable()
-		pl:SetColor(255,0,0,255)
 	elseif pl:Team() == 3 then
 	  	pl:StripWeapons()
      		pl:Spectate(6)
 	end
 	timer.Simple(2, function()
 	pl:GodDisable()
-	pl:SetColor(255,255,255,255)
 	net.Start("goddisable")
 	net.Send(pl)
 end)
@@ -181,20 +177,18 @@ end
 
 util.AddNetworkString("connectmessage")
 
-hook.Add("PlayerConnect", "connect message",function(pl) 
+function GM:PlayerConnect(pl) 
 	net.Start("connectmessage")
 	net.WriteEntity(pl)
 	net.Broadcast()
-end)
+end
 
 function GM:GetFallDamage( ply, speed )
 	return 0 
 end
 
 function GM:PhysgunPickup( pl, ent )
-        if pl == ent:GetPhysicsAttacker() then
-                return true
-        else
+        if not pl == ent:GetPhysicsAttacker() then
         	return false
         end
 end
