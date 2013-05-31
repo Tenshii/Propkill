@@ -6,20 +6,7 @@ function hidehud(name)
 end
 hook.Add("HUDShouldDraw", "HideOurHud", hidehud)
 
-function GetPropOwner()
-	propowner = net.ReadEntity()
-end
-net.Receive("propowner", GetPropOwner)
-
 function DrawNewHUD()
-	local trace = LocalPlayer():GetEyeTrace()
-		if trace.HitNonWorld then
-			if trace.Entity:GetClass() == "prop_physics" then
-				local ent = trace.Entity
-				draw.RoundedBox(12, ScrW()*0.03, ScrH()*0.79, 200, 40, Color(80, 80, 80, 200))
-				draw.SimpleText(propowner:Nick(),"TargetID", ScrW()*0.04, ScrH()*0.805, Color(200,200,200,220), 0, 1)
-			end
-		end
 
 	local winning = GetGlobalEntity( "Leader" )
 	local leading = "No one"
