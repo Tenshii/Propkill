@@ -1,6 +1,6 @@
-AddCSLuaFile( "cl_hud" )
 include( 'shared.lua' )
 include( 'cl_hud.lua')
+include( 'cl_netmessages.lua' )
 
 // open dat spawn menu if the sandbox derive is retarded
 function GM:SpawnMenuEnabled()
