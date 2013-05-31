@@ -60,7 +60,9 @@ function GM:GetFallDamage( ply, speed )
 end
 
 function GM:PhysgunPickup( pl, ent )
-        if not pl == ent:GetPhysicsAttacker() then
+        if pl == ent:GetPhysicsAttacker() then
         	return true
-        end
+    	else 
+    		return false
+    	end
 end
