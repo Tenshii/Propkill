@@ -23,6 +23,12 @@ function GM:PlayerGiveSWEP( ply, class, wep )
 	return false
 end
 
+// setting the owner of the prop
+
+function GM:PlayerSpawnedProp( pl, model, ent )
+	ent.Owner = pl
+end
+
 // Team stuff
 
 function GM:PlayerSpawn( pl )
