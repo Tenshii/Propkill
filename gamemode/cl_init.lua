@@ -2,6 +2,11 @@ AddCSLuaFile( "cl_hud" )
 include( 'shared.lua' )
 include( 'cl_hud.lua')
 
+// open dat spawn menu if the sandbox derive is retarded
+function GM:SpawnMenuEnabled()
+// return true;
+end
+
 //teamchooser
 
 function teamchooser() 

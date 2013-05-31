@@ -8,8 +8,6 @@ AddCSLuaFile( "shared.lua" )
 include( 'shared.lua' )
 include( 'cl_hud.lua')
 
-// Deriving gamemode from sandbox to allow prop spawns and such
-DeriveGamemode ("sandbox")
 
 // On Join
 
@@ -17,6 +15,12 @@ function GM:PlayerInitialSpawn( pl )
 
 	pl:ConCommand("team_menu")
 	pl:SetTeam( 3 )
+end
+
+// disable the sandbox SWEPS
+
+function GM:PlayerGiveSWEP( ply, class, wep )
+	return false
 end
 
 // Team stuff

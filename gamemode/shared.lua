@@ -3,6 +3,9 @@ GM.Author 	= "Tenshi and Goose"
 GM.Email 	= "N/A"
 GM.Website 	= "N/A"
 
+// Deriving gamemode from sandbox to allow prop spawns and such
+DeriveGamemode ( "sandbox" )
+
 function GM:Initialize()
 
 	self.BaseClass.Initialize( self )
