@@ -11,7 +11,8 @@ function DrawNewHUD()
 
 	local trace = LocalPlayer():GetEyeTrace()
 			if trace.Entity:GetClass() == "prop_physics" then
-				draw.SimpleText("Looking at a prop","TargetID", ScrW()*0.5, ScrH()*0.5, WHITECOLOUR, 0, 1)
+				draw.RoundedBox(12, ScrW()*0.03, ScrH()*0.79, 200, 40, Color(80, 80, 80, 200))
+				draw.SimpleText("Player Name","TargetID", ScrW()*0.04, ScrH()*0.805, Color(200,200,200,220), 0, 1)
 			end
 
 	local winning = GetGlobalEntity( "Leader" )
@@ -37,10 +38,10 @@ function DrawNewHUD()
 	draw.SimpleText( "Leader: "  .. leading, "TargetID", ScrW()*0.025, ScrH()*0.93, WHITECOLOUR, 0, 1)
 	draw.RoundedBox(4, ScrW()*0.029, ScrH()*0.838, 250, 20, Color(32, 32, 32, 255))
 	draw.RoundedBox(4, ScrW()*0.029, ScrH()*0.838, math.Clamp( LocalPlayer():Health(), 0, 100 )*2.5, 20, Color(129, 183, 1, 255))
-	draw.SimpleText("Health: "..LocalPlayer():Health(), "TargetID", ScrW()*0.1, ScrH()*0.85, WHITECOLOUR, 0, 1)
+	draw.SimpleText("Health: "..LocalPlayer():Health(), "TargetID", ScrW()*0.09, ScrH()*0.85, WHITECOLOUR, 0, 1)
 	draw.RoundedBox(4, ScrW()*0.029, ScrH()*0.879, 250, 20, Color(32, 32, 32, 255))
 	draw.RoundedBox(4, ScrW()*0.029, ScrH()*0.879, math.Clamp( KDR, 0, 4 )*62.5, 20, Color(193, 106, 6, 255))
-	draw.SimpleText("Kill/Death Ratio: "..KDR..":1", "TargetID", ScrW()*0.09, ScrH()*0.891, WHITECOLOUR, 0, 1)
+	draw.SimpleText("Kill/Death Ratio: "..KDR..":1", "TargetID", ScrW()*0.067, ScrH()*0.891, WHITECOLOUR, 0, 1)
 end
 
 hook.Add("HUDPaint", "NewHUD",DrawNewHUD )
