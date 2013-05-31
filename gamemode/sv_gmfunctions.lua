@@ -61,6 +61,6 @@ end
 
 function GM:PhysgunPickup( pl, ent )
         if not pl == ent:GetPhysicsAttacker() then
-        	return false
+        	return true
         end
 end
