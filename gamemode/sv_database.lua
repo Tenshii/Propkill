@@ -7,6 +7,8 @@ end
 
 hook.Add("PlayerInitialSpawn","SetUpTables",PK.SetUpTables)
 
+util.AddNetworkString("SendInfo")
+
 function PK.SendInfo(pl)
 	net.Start("SendInfo")
 	net.WriteTable(pl.Vars)
