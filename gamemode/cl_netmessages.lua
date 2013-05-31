@@ -1,4 +1,3 @@
-
 net.Receive("JoinRed", function()
   notification.AddLegacy( net.ReadEntity():Nick().." has joined the Red team.", NOTIFY_UNDO, 2 )
 end)
@@ -29,4 +28,8 @@ net.Receive("connectmessage", function()
 end)
 net.Receive("goddisable", function()
 	notification.AddLegacy( "Your spawn protection has ended.", NOTIFY_UNDO, 2 )
+end)
+net.Receive("SendInfo", function() 
+	Msg("Info Updated")
+	LocalPlayer().Vars = net.ReadTable()
 end)
