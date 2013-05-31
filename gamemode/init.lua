@@ -132,18 +132,18 @@ function GM:PlayerSpawnProp()
 	return true
 end
 
-local PropSpawned = 0
-
 util.AddNetworkString("proplimitreached")
+
+
+CreateConVar("proplimit",5,true,false)
+/*
 function GM:PlayerSpawnedProp(pl)
-	PropSpawned = PropSpawned + 1
-	if PropSpawned > 5 then
-		return false
+	if pl:GetNWInt() > GetConvar("proplimit"):GetInt() then
 		net.Start("proplimitreached")
 		net.Send(pl)
 	end
 end
-
+*/
 util.AddNetworkString("connectmessage")
 
 hook.Add("PlayerConnect", "connect message",function(pl) 
