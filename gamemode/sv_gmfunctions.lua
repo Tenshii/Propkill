@@ -57,12 +57,7 @@ function GM:PlayerSpawnProp()
 	return true
 end
 
-util.AddNetworkString("connectmessage")
-
 function GM:PlayerConnect(pl) 
-	net.Start("connectmessage")
-	net.WriteEntity(pl)
-	net.Broadcast()
 end
 
 function GM:GetFallDamage( ply, speed )
