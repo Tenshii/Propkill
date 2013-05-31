@@ -26,7 +26,7 @@ end
 // setting the owner of the prop
 
 function GM:PlayerSpawnedProp( pl, model, ent)
-	ent.Owner = pl
+	ent:SetOwner(pl)
 	ent:SetPhysicsAttacker( pl )
 end
 
