@@ -17,5 +17,5 @@ team.SetUp( 3, "Spectators", Color( 186, 186, 186 ) )
 
 // Models
 
-util.PrecacheModel( "models/player/ct_gsg9.mdl" )
-util.PrecacheModel( "models/player/t_leet.mdl" )
+util.PrecacheModel( "models/player/kleiner.mdl" )
+util.PrecacheModel( "models/player/odessa.mdl" )

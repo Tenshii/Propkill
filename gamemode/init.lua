@@ -8,6 +8,9 @@ AddCSLuaFile( "shared.lua" )
 include( 'shared.lua' )
 include( 'cl_hud.lua')
 
+// Deriving gamemode from sandbox to allow prop spawns and such
+DeriveGamemode ("sandbox")
+
 // On Join
 
 function GM:PlayerInitialSpawn( pl )
@@ -20,11 +23,11 @@ end
 
 function GM:PlayerSpawn( pl )
 	if pl:Team() == 1 then
-		pl:SetModel( "models/player/t_leet.mdl" )
+		pl:SetModel( "models/player/kleiner.mdl" )
 		pl:Give("weapon_physgun")
 		pl:UnSpectate()
 	elseif pl:Team() == 2 then		
-		pl:SetModel( "models/player/ct_gsg9.mdl" )
+		pl:SetModel( "models/player/odessa.mdl" )
 		pl:Give("weapon_physgun")
 		pl:UnSpectate()
 	elseif pl:Team() == 3 then
@@ -80,7 +83,6 @@ end
 concommand.Add( "team_blue", blues )
 concommand.Add( "team_red", reds )
 concommand.Add( "team_spec", spec )
-
 
 
 // teammenu

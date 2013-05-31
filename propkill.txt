@@ -1,6 +1,6 @@
 "propkill"
 {
-	"base"		"base"
+	"base"		"sandbox"
 	"title"		"PropKill"
 	"version"	"0.1"
 	"menusystem" "1"
