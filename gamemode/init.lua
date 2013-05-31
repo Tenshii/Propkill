@@ -184,10 +184,4 @@ function GM:GetFallDamage( ply, speed )
 	return 0 
 end
 
-// Prop protection
 
-function GM:PhysgunPickup( ply, ent )
-	if not ply == ent:GetOwner() then
-		return false
-	end
-end
