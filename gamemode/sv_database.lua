@@ -15,7 +15,7 @@ end
 
 function PK.KillStreak(pl,item,attacker)
 	if pl == attacker then
-		return end
+		return nil
 	elseif pl == attacker then
 		pl.Vars.KillStreak = 0
 		attacker.Vars.KillStreak = attacker.Vars.KillStreak + 1
