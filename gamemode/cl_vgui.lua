@@ -45,4 +45,4 @@ function teamchooser()
 		 end
 end
 
-usermessage.Hook( "teamchooser", teamchooser )
+net.Receive("TeamChooser",teamchooser)
