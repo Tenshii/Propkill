@@ -37,8 +37,7 @@ util.AddNetworkString("RedDisallow")
 util.AddNetworkString("SoloDisallow")
 util.AddNetworkString("TeamChooser")
 util.AddNetworkString("goddisable")
-
-// console commands
+util.AddNetworkString("propdeleted")
 
 concommand.Add( "team_blue", blues )
 concommand.Add( "team_red", reds )
