@@ -1,8 +1,6 @@
 // On Join
 
 function GM:PlayerInitialSpawn( pl )
-
-  pl:ConCommand("team_menu")
 	pl:SetTeam( 3 )
 end
 
