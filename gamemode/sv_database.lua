@@ -7,8 +7,6 @@ end
 
 hook.Add("PlayerInitialSpawn","SetUpTables",PK.SetUpTables)
 
-util.AddNetworkString("SendInfo")
-
 function PK.SendInfo(pl)
 	net.Start("SendInfo")
 	net.WriteTable(pl.Vars)
@@ -36,15 +34,6 @@ end
 hook.Add("PlayerSpawn","SpawnProtection",PK.SpawnProtection)
 
 // choosing teams
-
-util.AddNetworkString("JoinSpec")
-util.AddNetworkString("JoinBlue")
-util.AddNetworkString("JoinRed")
-util.AddNetworkString("JoinSolo")
-util.AddNetworkString("SpecDisallow")
-util.AddNetworkString("BlueDisallow")
-util.AddNetworkString("RedDisallow")
-util.AddNetworkString("SoloDisallow")
 
 function blues( pl )
   if pl:Team() == 1 then
@@ -97,7 +86,7 @@ function spec( pl )
 			net.Broadcast()
 		end
 end
-util.AddNetworkString("TeamChooser")
+
 function AutoTeamChooser(pl)
 	net.Start("TeamChooser")
 	net.Send(pl)
