@@ -1,13 +1,3 @@
-// console commands
-
-concommand.Add( "team_blue", blues )
-concommand.Add( "team_red", reds )
-concommand.Add( "team_spec", spec )
-concommand.Add( "team_solo", solos )
-concommand.Add( "team_menu", AutoTeamChooser )
-
-
-
 // chat commands
 
 function changeteam( pl, text, public)
