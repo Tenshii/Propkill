@@ -8,15 +8,18 @@ end
 hook.Add("PlayerInitialSpawn","SetUpTables",PK.SetUpTables)
 
 function PK.SendInfo(pl)
+	if IsValid(pl) then
 		net.Start("SendInfo")
 		net.WriteTable(pl.Vars)
 		net.Send(pl)
+	end
 end
 
 function PK.KillStreak(pl,item,attacker)
+	if not pl == attacker then
 		pl.Vars.KillStreak = 0
 		attacker.Vars.KillStreak = attacker.Vars.KillStreak + 1
-
+	end
 		PK.SendInfo(pl)
 		PK.SendInfo(attacker)
 	end
