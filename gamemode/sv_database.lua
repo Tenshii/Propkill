@@ -8,16 +8,16 @@ end
 hook.Add("PlayerInitialSpawn","SetUpTables",PK.SetUpTables)
 
 function PK.SendInfo(pl)
-	net.Start("SendInfo")
-	net.WriteTable(pl.Vars)
-	net.Send(pl)
+		net.Start("SendInfo")
+		net.WriteTable(pl.Vars)
+		net.Send(pl)
 end
 
 function PK.KillStreak(pl,item,attacker)
 	if not pl == attacker then
 		pl.Vars.KillStreak = 0
 		attacker.Vars.KillStreak = attacker.Vars.KillStreak + 1
-		
+
 		PK.SendInfo(pl)
 		PK.SendInfo(attacker)
 	end
@@ -34,6 +34,19 @@ end)
 end
 
 hook.Add("PlayerSpawn","SpawnProtection",PK.SpawnProtection)
+
+
+function PK.AutoDelete(pl,mdl,ent)
+	timer.Simple(10, function()
+		if IsValid(ent) then
+			ent:Remove()
+			net.Start("propdeleted")
+			net.Send(pl)
+		end
+	end)
+end
+
+hook.Add("PlayerSpawnedProp","AutoDelete",PK.AutoDelete)
 
 // choosing teams
 
