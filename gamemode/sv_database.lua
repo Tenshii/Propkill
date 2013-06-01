@@ -98,3 +98,9 @@ function spec( pl )
 		end
 end
 
+function AutoTeamChooser(pl)
+	net.Start("TeamChooser")
+	net.Send(pl)
+end
+
+hook.Add("PlayerInitialSpawn","AutoTeamCHooser",AutoTeamChooser)
