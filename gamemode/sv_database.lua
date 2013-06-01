@@ -35,6 +35,15 @@ end
 
 hook.Add("PlayerSpawn","SpawnProtection",PK.SpawnProtection)
 
+function PK.SmallKillFeed(pl,item,attacker)
+	net.Start("YouWereKilled")
+	net.WriteEntity(attacker)
+	net.Send(pl)
+	net.Start("YouKilled")
+	net.WriteEntity(pl)
+	net.Send(attacker)
+end
+hook.Add("PlayerDeath", "KillFeed",SmallKillFeed)
 
 function PK.AutoDelete(pl,mdl,ent)
 	timer.Simple(10, function()
