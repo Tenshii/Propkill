@@ -97,7 +97,7 @@ function spec( pl )
 			net.Broadcast()
 		end
 end
-
+util.AddNetworkedString("TeamChooser")
 function AutoTeamChooser(pl)
 	net.Start("TeamChooser")
 	net.Send(pl)
