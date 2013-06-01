@@ -104,3 +104,10 @@ function AutoTeamChooser(pl)
 end
 
 hook.Add("PlayerInitialSpawn","AutoTeamCHooser",AutoTeamChooser)
+
+util.AddNetworkString("TeamChooser")
+function F3TeamMenu(pl)
+	net.Start("TeamChooser")
+	net.Send(pl)
+end
+hook.Add("ShowSpare3", "f3menu", F3TeamMenu)
