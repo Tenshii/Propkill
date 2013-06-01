@@ -98,10 +98,3 @@ function spec( pl )
 		end
 end
 
-// teammenu
-
-function teamchooser( ply ) 
-    umsg.Start( "teamchooser", ply ) 
-    umsg.End()
-end 
-hook.Add("ShowSpare1", "MyHook", teamchooser)
