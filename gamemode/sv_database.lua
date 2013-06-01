@@ -118,7 +118,14 @@ end
 
 hook.Add("PlayerInitialSpawn","AutoTeamCHooser",AutoTeamChooser)
 
-function F3TeamMenu(pl)
-	AutoTeamChooser()
+function PK.GetLeader(pl)
+	for k,v in pairs(player.GetAll()) do
+		if IsValid(v) then
+			if math.max(v.Vars.KillStreak) > 0 then
+				math.max(v.Vars.KillStreak)
+				SetGlobalEntity("Leader",v)
+			end
+		end
+	end
 end
-hook.Add("ShowSpare3", "f3menu", F3TeamMenu)
+
