@@ -1,6 +1,6 @@
 //teamchooser
 
-function teamchooser() 
+function teamchooservgui() 
 
   local teamchooser = vgui.Create( "DFrame" ) -- Creates the frame itself
   teamchooser:SetPos( 500,300 ) -- Position on the players screen
