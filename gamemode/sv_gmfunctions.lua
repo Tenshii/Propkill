@@ -19,7 +19,6 @@ function GM:PlayerSpawnedProp( pl, model, ent)
 end
 
 // Team stuff
-util.AddNetworkString("goddisable")
 
 function GM:PlayerSpawn( pl )
 	if pl:Team() == 1 then
