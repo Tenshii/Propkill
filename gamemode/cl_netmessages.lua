@@ -37,3 +37,30 @@ net.Receive("TeamChooser", function() teamchooservgui() end)
 net.Receive("propdeleted", function()
 	notification.AddLegacy( "Your prop has been auto-deleted.", NOTIFY_UNDO, 2 )
 end)
+local drawwhoyoukilled = 0
+net.Receive("YouKilled", function()
+	drawwhoyoukilled = 1
+	if drawwhoyoukilled = 1 then
+		surface.SetTextColor( 94, 230, 4, 255 )
+		surface.SetTextPos( ScrH()*0.5, ScrW()*0.5 ) 
+		surface.SetFont("TargetID")
+		surface.DrawText( "You killed "..net.ReadEntity():Nick() )
+	end
+	timer.Simple(3,function()
+		drawwhoyoukilled = 0
+	end)
+end)
+local drawwhokilledyou = 0
+net.Receive("YouKilled", function()
+	drawwhokilledyou = 1
+	if drawwhokilledyou = 1 then
+		surface.SetTextColor( 210, 210, 5, 255 )
+		surface.SetTextPos( ScrH()*0.5, ScrW()*0.5 ) 
+		surface.SetFont("TargetID")
+		surface.DrawText( "You were killed by "..net.ReadEntity():Nick() )
+	end
+	timer.Simple(3,function()
+		drawwhokilledyou = 0
+	end)
+end)
+
