@@ -106,6 +106,6 @@ end
 hook.Add("PlayerInitialSpawn","AutoTeamCHooser",AutoTeamChooser)
 
 function F3TeamMenu(pl)
-	pl:ConCommand("team_menu")
+	AutoTeamChooser()
 end
 hook.Add("ShowSpare3", "f3menu", F3TeamMenu)
