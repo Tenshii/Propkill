@@ -26,5 +26,14 @@ include( 'sv_gmfunctions.lua' )
 include( 'sv_commands.lua' )
 include( 'sv_database.lua' )
 
-
-
+util.AddNetworkString("SendInfo")
+util.AddNetworkString("JoinSpec")
+util.AddNetworkString("JoinBlue")
+util.AddNetworkString("JoinRed")
+util.AddNetworkString("JoinSolo")
+util.AddNetworkString("SpecDisallow")
+util.AddNetworkString("BlueDisallow")
+util.AddNetworkString("RedDisallow")
+util.AddNetworkString("SoloDisallow")
+util.AddNetworkString("TeamChooser")
+util.AddNetworkString("goddisable")
