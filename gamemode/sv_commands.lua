@@ -20,3 +20,10 @@ function changeteam( pl, text, public)
 end
 
 hook.Add("PlayerSay", "changeteam", changeteam)
+
+// f3 menu
+
+function F3TeamMenu(pl)
+	pl:ConCommand("team_menu")
+end
+hook.Add("ShowSpare1", "f3menu", F3TeamMenu)
