@@ -30,8 +30,9 @@ function changeteam( pl, text, public)
 end
 
 hook.Add("PlayerSay", "changeteam", changeteam)
-
+util.AddNetworkedString("TeamChooser")
 function F3TeamMenu(pl)
-	AutoTeamChooser
+	net.Start("TeamChooser")
+	net.Send(pl)
 end
 hook.Add("ShowSpare3", "f3menu", F3TeamMenu)
