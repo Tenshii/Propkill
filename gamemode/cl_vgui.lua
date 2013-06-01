@@ -44,5 +44,3 @@ function teamchooser()
 			teamchooser:SetVisible(false)
 		 end
 end
-
-net.Receive("TeamChooser",teamchooser)
