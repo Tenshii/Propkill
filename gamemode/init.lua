@@ -38,6 +38,8 @@ util.AddNetworkString("SoloDisallow")
 util.AddNetworkString("TeamChooser")
 util.AddNetworkString("goddisable")
 util.AddNetworkString("propdeleted")
+util.AddNetworkString("YouKilled")
+util.AddNetworkString("YouWereKilled")
 
 concommand.Add( "team_blue", blues )
 concommand.Add( "team_red", reds )
