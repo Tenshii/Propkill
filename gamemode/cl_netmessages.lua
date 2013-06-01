@@ -40,7 +40,7 @@ end)
 local drawwhoyoukilled = 0
 net.Receive("YouKilled", function()
 	drawwhoyoukilled = 1
-	if drawwhoyoukilled = 1 then
+	if drawwhoyoukilled == 1 then
 		surface.SetTextColor( 94, 230, 4, 255 )
 		surface.SetTextPos( ScrH()*0.5, ScrW()*0.5 ) 
 		surface.SetFont("TargetID")
@@ -53,7 +53,7 @@ end)
 local drawwhokilledyou = 0
 net.Receive("YouKilled", function()
 	drawwhokilledyou = 1
-	if drawwhokilledyou = 1 then
+	if drawwhokilledyou == 1 then
 		surface.SetTextColor( 210, 210, 5, 255 )
 		surface.SetTextPos( ScrH()*0.5, ScrW()*0.5 ) 
 		surface.SetFont("TargetID")
