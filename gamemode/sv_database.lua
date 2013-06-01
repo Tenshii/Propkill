@@ -14,9 +14,9 @@ function PK.SendInfo(pl)
 end
 
 function PK.KillStreak(pl,item,attacker)
-	if not pl == attacker then
+	if pl == attacker then
 		return end
-	else
+	elseif pl == attacker then
 		pl.Vars.KillStreak = 0
 		attacker.Vars.KillStreak = attacker.Vars.KillStreak + 1
 
