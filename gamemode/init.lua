@@ -37,3 +37,11 @@ util.AddNetworkString("RedDisallow")
 util.AddNetworkString("SoloDisallow")
 util.AddNetworkString("TeamChooser")
 util.AddNetworkString("goddisable")
+
+// console commands
+
+concommand.Add( "team_blue", blues )
+concommand.Add( "team_red", reds )
+concommand.Add( "team_spec", spec )
+concommand.Add( "team_solo", solos )
+concommand.Add( "team_menu", AutoTeamChooser )
