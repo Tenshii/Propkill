@@ -31,3 +31,7 @@ end
 
 hook.Add("PlayerSay", "changeteam", changeteam)
 
+function F3TeamMenu(pl)
+	AutoTeamChooser
+end
+hook.Add("ShowSpare3", "f3menu", F3TeamMenu)
