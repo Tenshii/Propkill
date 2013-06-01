@@ -4,10 +4,7 @@ concommand.Add( "team_blue", blues )
 concommand.Add( "team_red", reds )
 concommand.Add( "team_spec", spec )
 concommand.Add( "team_solo", solos )
-concommand.Add( "team_menu", function(pl)
-	net.Start("TeamChooser")
-	net.Send(pl)
-end)
+concommand.Add( "team_menu", teamchooser )
 
 
 
